@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app='myApp'>
+  <div ng-controller = "mainCtrl">
+    <button ng-click = "addQuiz()" class="btn btn-default"> add quiz</button>
+    {{quizes}}
+    <div ng-repeat = "rootQuiz in quizes">
+      <button ng-click = "discardQuiz(rootQuiz)" > Discard</button>
+      <quiz ng-model="rootQuiz"></quiz>
+    </div>
+  </div>
+  {{quizes}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="angular-uuid.js"></script>
+  <script src="app.js"></script>
+  <script src="testController.js"></script>
+</html>

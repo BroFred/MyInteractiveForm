@@ -1,0 +1,35 @@
+<div>
+    <form name="titleForm">
+      <textarea name = "titleInput" ng-model = rootQuiz.quizBody.title placeholder="Add your quiz question" required></textarea>
+    </form>
+    <form name="tagForm" ng-submit="currentTag.length&&addTag()">
+      <input name = "addTag" type='text' ng-model = currentTag placeholder="tags for searching" ></input>
+      <input type="submit" id="submit" value="Add tag" />
+    </form>
+    <learning-tag ng-repeat = "(key, value) in rootQuiz.tag" tags='rootQuiz.tag' current-tag='{{key}}'></learning-tag>
+    <form name="typeSelectForm2">
+      <label for="">How many choices you need?:</label>
+      <select name="mySelect" id="mySelect"
+        ng-options="option.name for option in data.availableOptions track by option.name"
+        ng-model="data.selectedOption"
+        ng-change="createQuizModel(data.selectedOption)" class="form-control"></select>
+    </form>
+    {{data.selectedOption}}
+    <form name="quizForm">
+        <label for="">add the choice content:</label>
+        <div ng-repeat = "option in rootQuiz.quizBody.availableOptions">
+          <input
+                type="checkbox"
+                ng-model="option.isRightAnswer"
+                ng-true-value="1"
+                ng-false-value="0"
+                ng-change="changeSelection(option)"
+                >
+          </input>
+          <input ng-model= "option.value" placeholder="content here" required></input>
+          <div>
+            {{option.value}}
+          </div>
+        </div>
+    </form>
+  </div>
