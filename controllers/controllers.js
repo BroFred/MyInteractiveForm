@@ -86,65 +86,10 @@ angular.module('myApp')
     }
   }
 })
-.directive('quiz',function(){
-  return {
-    restrict:'E',
-    require: '?ngModel',
-    templateUrl : 'form.html',
-    controller:"quizController",
-    link:function(scope,element,attribute){
-      var autoSave = function(){
-        var len=scope.rootQuiz.quizBody.availableOptions.length;
-        var inputCheckBoxArr=$("form[name='quizForm']").find("input[type='checkbox']").splice(0,len);
-        var ischecked=false;
-        inputCheckBoxArr.map(function(val){ ischecked=(val.checked||ischecked)});
-        if(scope.quizForm.$valid&&scope.titleForm.$valid&&ischecked){
-          scope.rootQuiz.isComplete=true;
-        }
-        else{
-          scope.rootQuiz.isComplete=false;
-        }
-        if(scope.readyState){
-          console.log('start');
-          scope.readyState=0;
-          scope.stop =setTimeout(scope.saveTimer,10000);
-        }
-      }
-      scope.$watch('rootQuiz',autoSave,true);
-    }
-  }
-}).
-directive('learningTag',function(){
-    return {
-      restrict:'E',
-      templateUrl : 'tag.html',
-      scope:{
-        tags: '=',
-        currentTag:'@'
-      },
-      controller:function($scope){
-        $scope.deleteTag=function(){
-          delete $scope.tags[$scope.currentTag];
-        }
-      }
-    }
-})
 .controller('ckeditorCtrl', ['$scope', function ($scope) {
   // Called when the editor is completely ready.
   $scope.isInline=true;
   $scope.onReady = function () {
-    console.log(1);
     // ...
   };
-}])
-.directive('editArea',function(){
-  return {
-    restrict: 'E',
-    scope:{
-      options : '=',
-      content : '=',
-    },
-    templateUrl:'editArea.html',
-    controller: 'ckeditorCtrl'
-  }
-})
+}]);

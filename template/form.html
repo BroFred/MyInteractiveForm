@@ -1,6 +1,7 @@
 <div>
     <form name="titleForm">
-      <textarea name = "titleInput" ng-model = rootQuiz.quizBody.title placeholder="Add your quiz question" required></textarea>
+      <edit-area  options = 'QuestionOptions' content = "rootQuiz.quizBody.title" ></edit-area>
+      <!--<textarea ckeditor="QuestionOptions"  ng-model = rootQuiz.quizBody.title placeholder="Add your quiz question" required></textarea>-->
     </form>
     <form name="tagForm" ng-submit="currentTag.length&&addTag()">
       <input name = "addTag" type='text' ng-model = currentTag placeholder="tags for searching" ></input>
@@ -26,7 +27,10 @@
                 ng-change="changeSelection(option)"
                 >
           </input>
-          <input ng-model= "option.value" placeholder="content here" required></input>
+          <edit-area  options = 'answerOptions' content = "option.value"  ></edit-area>
+          <!--<div ng-controller= 'ckeditorCtrl' >
+            <textarea ckeditor="options"  ng-model= "option.value" placeholder="content here"  ready="onReady()" required></textarea>
+          <div>-->
           <div>
             {{option.value}}
           </div>
