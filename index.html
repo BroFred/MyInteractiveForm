@@ -4,8 +4,10 @@
     <button ng-click = "addQuiz()" class="btn btn-default"> add quiz</button>
     {{quizes}}
     <div ng-repeat = "rootQuiz in quizes">
+      <button ng-click = 'edit(rootQuiz.id)'>Edit me!</button>
       <button ng-click = "discardQuiz(rootQuiz)" > Discard</button>
-      <quiz ng-model="rootQuiz"></quiz>
+      <quiz ng-model="rootQuiz" ng-if ='rootQuiz.id===currentEdit'></quiz>
+      <preview-quiz ng-model="rootQuiz" ng-if ='rootQuiz.id!==currentEdit'></previewQuiz>
     </div>
   </div>
   {{quizes}}

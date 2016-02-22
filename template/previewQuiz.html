@@ -1,0 +1,6 @@
+<p ng-bind-html="rootQuiz.quizBody.title | sanitize"></p>
+<div ng-repeat='option in rootQuiz.quizBody.availableOptions'>
+  <div ng-if = 'option.isRightAnswer' ><div ng-bind-html="option.value+'<span><strong>&#10004</strong></span>' | sanitize"></div></div>
+  <div ng-if = '!option.isRightAnswer'><div ng-bind-html="option.value | sanitize"></div></div>
+</div>
+<Strong>{{rootQuiz.isComplete ? 'Complete!' : 'Edit to complete Quiz'}}</Strong>

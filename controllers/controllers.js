@@ -16,28 +16,39 @@ angular.module('myApp')
   $scope.quizes=[{
     quizBody:{
       title:null,
-      availableOptions:[{id: 1, value:null, isRightAnswer:0},{id: 2, value:null, isRightAnswer:0}]
+      availableOptions:[{id: 1, value:'', isRightAnswer:0},{id: 2, value:'', isRightAnswer:0}]
     },
     isMultiple:0,
     tag:{},
     isComplete:false,
     id:uuid.v4()}];
   $scope.addQuiz=function(){
+    var Uid=uuid.v4();
     $scope.quizes.push({
       quizBody:{
         title:null,
-        availableOptions:[{id: 1, value:null, isRightAnswer:0},{id: 2, value:null, isRightAnswer:0}]
+        availableOptions:[{id: 1, value:'', isRightAnswer:0},{id: 2, value:'', isRightAnswer:0}]
       },
       tag:{},
       isMultiple:0,
       isComplete:false,
-      id:uuid.v4()});
+      id:Uid});
+      $scope.currentEdit=Uid;
   }
   $scope.discardQuiz=function(curr){
     var index=$scope.quizes.findIndex(function(obj){
       return curr.id === obj.id;
     });
     $scope.quizes.splice(index,1);
+  }
+  $scope.currentEdit='';
+  $scope.edit=function(currentEdit){
+    if($scope.currentEdit===currentEdit){
+      $scope.currentEdit='';
+    }
+    else{
+      $scope.currentEdit=currentEdit;
+    }
   }
 })
 .controller('quizController',function($scope,$interval){
@@ -67,7 +78,7 @@ angular.module('myApp')
   $scope.createQuizModel=function(current){
     var arr= [];
     for(var i =1;i<=current.id;i++){
-      arr.push({id: i, value:null, isRightAnswer:0});
+      arr.push({id: i, value:'', isRightAnswer:0});
     }
     $scope.rootQuiz.isMultiple=current.isMultiple;
     $scope.rootQuiz.quizBody.availableOptions=arr;
@@ -87,8 +98,7 @@ angular.module('myApp')
   }
 })
 .controller('ckeditorCtrl', ['$scope', function ($scope) {
-  // Called when the editor is completely ready.
-  $scope.isInline=true;
+  //Called when the editor is completely ready.
   $scope.onReady = function () {
     // ...
   };
