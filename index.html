@@ -1,18 +1,37 @@
 <!doctype html>
 <html ng-app='myApp'>
-  <div ng-controller = "mainCtrl">
-    <button ng-click = "addQuiz()" class="btn btn-default"> add quiz</button>
-    {{quizes}}
+  <!--bootstrap-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <!--bootstrap-->
+  <div ng-controller = "mainCtrl" class="container">
     <div ng-repeat = "rootQuiz in quizes">
-      <button ng-click = 'edit(rootQuiz.id)'>Edit me!</button>
-      <button ng-click = "discardQuiz(rootQuiz)" > Discard</button>
-      <quiz ng-model="rootQuiz" ng-if ='rootQuiz.id===currentEdit'></quiz>
-      <preview-quiz ng-model="rootQuiz" ng-if ='rootQuiz.id!==currentEdit'></previewQuiz>
+      <!--<button ng-click = 'edit(rootQuiz.id)'>Edit me!</button>-->
+      <button ng-click = "discardQuiz(rootQuiz)" class="btn btn-danger btn-block" > Discard</button>
+      <!--<quiz ng-model="rootQuiz" ng-if ='rootQuiz.id===currentEdit'></quiz>-->
+      <quiz ng-model="rootQuiz" ></quiz>
+      <!--<preview-quiz ng-model="rootQuiz" ng-if ='rootQuiz.id!==currentEdit'></previewQuiz>-->
     </div>
+    <div class="form-group">
+      &nbsp;
+    </div>
+    <button ng-click = "addQuiz()" class="btn btn-success btn-block btn-lg">
+      <div class ="glyphicon glyphicon-plus-sign "
+        aria-hidden="true">
+        Add Quiz
+      </div>
+    </button>
   </div>
-  {{quizes}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <!--bootstrap-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script><!-- (Optional) Latest compiled and minified JavaScript translation files -->
+  <!--bootstrap-->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/js/select2.min.js"></script>
   <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
   <script src="lib/angular-uuid.js"></script>
   <script src="lib/angular-ckeditor.js"></script>

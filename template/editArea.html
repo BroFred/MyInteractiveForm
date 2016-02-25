@@ -1,3 +1,13 @@
-<div name = 'highLight'>
-  <textarea name ='inputArea' ckeditor="options.general"  ng-model= "content" placeholder="content here"  ready="onReady()" required >{{this.inputArea}}</textarea>
-<div>
+<span>
+  <div
+      name = 'highLight'
+      ckeditor="options.general"
+      ng-model= "content"
+      placeholder="content here"
+      ready="onReady()"
+      required
+      class = 'form-control'
+      >
+  </div>
+  <i name = 'validationMark' class="form-control-feedback"></i>
+<span>

@@ -5,11 +5,11 @@ angular.module('myApp')
       language: 'en',
       height:'100px'
     },
-    isInline: false
+    isInline: true
   };
   $scope.answerOptions = {
     general:{
-      language: 'en',
+      language: 'en'
     },
     isInline: true
   };
@@ -71,10 +71,6 @@ angular.module('myApp')
     ],
     selectedOption:{id:2,name:"chose two single",isMultiple:0}
   };
-  $scope.addTag=function(){
-    $scope.rootQuiz.tag[$scope.currentTag.toLowerCase()]=1;
-    $scope.currentTag="";
-  }
   $scope.createQuizModel=function(current){
     var arr= [];
     for(var i =1;i<=current.id;i++){

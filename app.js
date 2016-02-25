@@ -1,1 +1,1 @@
-angular.module('myApp',["angular-uuid",'ckeditor']);
+angular.module('myApp',["angular-uuid",'ckeditor','ui.bootstrap']);

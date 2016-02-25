@@ -1,39 +1,54 @@
 <div>
-    <form name="titleForm">
-      <edit-area  options = 'QuestionOptions' content = "rootQuiz.quizBody.title" ></edit-area>
-      <!--<textarea ckeditor="QuestionOptions"  ng-model = rootQuiz.quizBody.title placeholder="Add your quiz question" required></textarea>-->
-    </form>
-    <form name="tagForm" ng-submit="currentTag.length&&addTag()">
-      <input name = "addTag" type='text' ng-model = currentTag placeholder="tags for searching" ></input>
-      <input type="submit" id="submit" value="Add tag" />
-    </form>
-    <learning-tag ng-repeat = "(key, value) in rootQuiz.tag" tags='rootQuiz.tag' current-tag='{{key}}'></learning-tag>
-    <form name="typeSelectForm2">
-      <label for="">How many choices you need?:</label>
-      <select name="mySelect" id="mySelect"
-        ng-options="option.name for option in data.availableOptions track by option.name"
-        ng-model="data.selectedOption"
-        ng-change="createQuizModel(data.selectedOption)" class="form-control"></select>
-    </form>
-    {{data.selectedOption}}
+    <div>
+      <form name="titleForm">
+        <div class = 'input-group'>
+          <span class ='input-group-addon'>
+            <label for="" style ='display:block;text-align:center;'><h1>Question:</h1></label>
+          </sapn>
+          <edit-area class="form-group  has-feedback" options = 'QuestionOptions' content = "rootQuiz.quizBody.title" />
+        </div>
+        <!--<textarea ckeditor="QuestionOptions"  ng-model = rootQuiz.quizBody.title placeholder="Add your quiz question" required></textarea>-->
+      </form>
+    </div>
+    <div class ="text-right">
+      <form name="typeSelectForm2"  class="form-inline" title= "Choose the type of question" >
+        <label for=""><h4>Choose the question type:</h4></label>
+        <select name="mySelect"
+          ng-options="option.name for option in data.availableOptions track by option.name"
+          ng-model="data.selectedOption"
+          ng-change="createQuizModel(data.selectedOption)" class="form-control"
+          >
+          </select>
+      </form>
+    </div>
+    <!--{{data.selectedOption}}-->
     <form name="quizForm">
-        <label for="">add the choice content:</label>
-        <div ng-repeat = "option in rootQuiz.quizBody.availableOptions">
-          <input
-                type="checkbox"
-                ng-model="option.isRightAnswer"
-                ng-true-value="1"
-                ng-false-value="0"
-                ng-change="changeSelection(option)"
-                >
-          </input>
-          <edit-area  options = 'answerOptions' content = "option.value" ></edit-area>
+        <label for="" style ='display:block;text-align:center;'><h3>Edit my choices:</h3></label>
+        <div ng-repeat = "option in rootQuiz.quizBody.availableOptions" class = 'input-group'>
+          <span class = 'input-group-addon'>
+            <label for="{{rootQuiz.id+option.id}}" style ='text-align:center;display:block;'>
+              <span ng-class="{'glyphicon glyphicon-ok': option.isRightAnswer,'glyphicon glyphicon-remove': !option.isRightAnswer}"
+              aria-hidden="true"/>
+            </label>
+          </span>
+          <edit-area class="form-group  has-feedback" options = 'answerOptions' content = "option.value"></edit-area>
+            <input
+                  id = '{{rootQuiz.id+option.id}}'
+                  type="checkbox"
+                  ng-model="option.isRightAnswer"
+                  ng-true-value="1"
+                  ng-false-value="0"
+                  ng-change="changeSelection(option)"
+                  style='display: none;'
+                  />
           <!--<div ng-controller= 'ckeditorCtrl' >
             <textarea ckeditor="options"  ng-model= "option.value" placeholder="content here"  ready="onReady()" required></textarea>
           <div>-->
-          <div>
-            {{option.value}}
-          </div>
         </div>
     </form>
+    <div class ="text-right" style ='display:block;text-align:center;'>
+      <label>Add tags for searching</label>
+      <learning-tag  tags='rootQuiz.tag'></learning-tag>
+    </div>
+
   </div>

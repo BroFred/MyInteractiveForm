@@ -1,3 +1,14 @@
-<div>
-  <button ng-click=deleteTag()>{{currentTag}}</button>
-<div>
+
+  <form  name="tagForm" ng-submit="inputTag.length&&addTag(inputTag)">
+    <div class="input-group">
+      <input name = "addTag" type='text' ng-model = 'inputTag' placeholder="tags for searching" class="form-control"/>
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-info">Add tag</button>
+      <span>
+    </div>
+  </form>
+  <button ng-repeat = "(key, value) in tags"
+  ng-click=deleteTag(key)
+  class="btn btn-warning btn-sm"
+  style="float: left;"
+  >{{key}}</button>
