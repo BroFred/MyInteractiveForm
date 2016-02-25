@@ -1,11 +1,16 @@
-<div>
+<div ng-class ="{'panel panel-warning':current.Edit==rootQuiz.id}">
+  <div ng-if = 'current.Edit==rootQuiz.id' class = "panel-heading">
+     <h3 class = "panel-title text-right"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h3>
+  </div>
     <div>
       <form name="titleForm">
+          <label for="" style ='text-align:center;display:block;'><h1>Question:</h1></label>
         <div class = 'input-group'>
-          <span class ='input-group-addon'>
-            <label for="" style ='display:block;text-align:center;'><h1>Question:</h1></label>
-          </sapn>
-          <edit-area class="form-group  has-feedback" options = 'QuestionOptions' content = "rootQuiz.quizBody.title" />
+          <div class ='input-group-addon'>
+          </div>
+          <div>
+            <edit-area class="form-group has-feedback" options = 'QuestionOptions' content = "rootQuiz.quizBody.title"></edit-area>
+          </div>
         </div>
         <!--<textarea ckeditor="QuestionOptions"  ng-model = rootQuiz.quizBody.title placeholder="Add your quiz question" required></textarea>-->
       </form>
@@ -50,5 +55,4 @@
       <label>Add tags for searching</label>
       <learning-tag  tags='rootQuiz.tag'></learning-tag>
     </div>
-
   </div>

@@ -4,3 +4,10 @@ reusable parts
 1.textarea for ckeditor
 2.quiz
 3.tags
+
+4.complete model looks like
+
+{interactive_id:id,
+  introduction:content,
+  quizes: quizesArr
+}

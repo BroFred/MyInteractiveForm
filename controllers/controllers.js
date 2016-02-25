@@ -1,5 +1,8 @@
 angular.module('myApp')
 .controller('mainCtrl',function($scope,uuid){
+  $scope.searchCondition='';
+  $scope.searchCatagory='0all';
+  $scope.current={}; //shared scope
   $scope.QuestionOptions = {
     general:{
       language: 'en',
@@ -20,7 +23,7 @@ angular.module('myApp')
     },
     isMultiple:0,
     tag:{},
-    isComplete:false,
+    isComplete:0,
     id:uuid.v4()}];
   $scope.addQuiz=function(){
     var Uid=uuid.v4();
@@ -31,9 +34,9 @@ angular.module('myApp')
       },
       tag:{},
       isMultiple:0,
-      isComplete:false,
+      isComplete:0,
       id:Uid});
-      $scope.currentEdit=Uid;
+      $scope.current.Edit=Uid;
   }
   $scope.discardQuiz=function(curr){
     var index=$scope.quizes.findIndex(function(obj){
@@ -41,7 +44,7 @@ angular.module('myApp')
     });
     $scope.quizes.splice(index,1);
   }
-  $scope.currentEdit='';
+  $scope.current.Edit='';
   $scope.edit=function(currentEdit){
     if($scope.currentEdit===currentEdit){
       $scope.currentEdit='';
@@ -50,6 +53,26 @@ angular.module('myApp')
       $scope.currentEdit=currentEdit;
     }
   }
+  $scope.searchBar= function(query) {
+    return function(currQuiz){
+      var temp=currQuiz.isComplete;
+      switch ($scope.searchCatagory) {
+        case '0all':
+          return true;
+        case '1complete':
+          return temp ? true:false;
+        case '2unfinished':
+          return temp ? false:true;
+        case '3tag':
+        console.log(query)
+          return ((!query)||(currQuiz.tag[query]));
+        case '4choice':
+          return ((!query)||(currQuiz.quizBody.availableOptions.length==query));
+        default:
+          return true;
+      }
+    }
+  };
 })
 .controller('quizController',function($scope,$interval){
   $scope.readyState=1;

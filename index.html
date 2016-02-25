@@ -7,11 +7,27 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
   <!--bootstrap-->
   <div ng-controller = "mainCtrl" class="container">
-    <div ng-repeat = "rootQuiz in quizes">
+    {{quizes}}
+    <label for='' class ='col-xs-6'>Search for your creation:</label>
+    <form class="form-inline text-right" role="form">
+      <div class='form-group'>
+        <input ng-model = 'searchCondition' placeholder = 'find your creation' class='form-control' ng-disabled='searchCatagory[0]<3'/>
+      </div>
+      <div class='form-group'>
+        <select class="form-control" ng-model='searchCatagory'>
+          <option value="0all">Show All</option>
+          <option value="1complete">Show completed</option>
+          <option value="2unfinished">Show unfinished</option>
+          <option value="3tag">Show Matched Tag</option>
+          <option value="4choice">Show Matched Number of Choice</option>
+        </select>
+      </div>
+    </form>
+    <div ng-repeat = "rootQuiz in quizes|filter:searchBar(searchCondition)">
       <!--<button ng-click = 'edit(rootQuiz.id)'>Edit me!</button>-->
       <button ng-click = "discardQuiz(rootQuiz)" class="btn btn-danger btn-block" > Discard</button>
       <!--<quiz ng-model="rootQuiz" ng-if ='rootQuiz.id===currentEdit'></quiz>-->
-      <quiz ng-model="rootQuiz" ></quiz>
+      <quiz ng-model="rootQuiz"></quiz>
       <!--<preview-quiz ng-model="rootQuiz" ng-if ='rootQuiz.id!==currentEdit'></previewQuiz>-->
     </div>
     <div class="form-group">

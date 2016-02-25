@@ -7,15 +7,17 @@ angular.module('myApp')
     controller:"quizController",
     link:function(scope,element,attribute){
       var autoSave = function(){
+        scope.current.Edit=scope.rootQuiz.id;
         var len=scope.rootQuiz.quizBody.availableOptions.length;
         var inputCheckBoxArr=$("form[name='quizForm']").find("input[type='checkbox']").splice(0,len);
         var ischecked=false;
-        inputCheckBoxArr.map(function(val){ ischecked=(val.checked||ischecked)});
+        //inputCheckBoxArr.map(function(val){ ischecked=(val.checked||ischecked)});
+        scope.rootQuiz.quizBody.availableOptions.map(function(val){ ischecked=(val.isRightAnswer||ischecked)});
         if(scope.quizForm.$valid&&scope.titleForm.$valid&&ischecked){
-          scope.rootQuiz.isComplete=true;
+          scope.rootQuiz.isComplete=1;
         }
         else{
-          scope.rootQuiz.isComplete=false;
+          scope.rootQuiz.isComplete=0;
         }
         if(scope.readyState){
           console.log('start');
@@ -24,6 +26,13 @@ angular.module('myApp')
         }
       }
       scope.$watch('rootQuiz',autoSave,true);
+      // scope.$watch('currentEdit',function(){
+      //   console.log(scope.currentEdit===scope.rootQuiz.id)
+      //   if(scope.currentEdit===scope.rootQuiz.id)
+      //     element.find("div[name ='panelholder']").addClass('panel panel-warning');
+      //   else
+      //     element.find("div[name ='panelholder']").removeClass('panel panel-warning');
+      // });
     }
   }
 })
