@@ -6,8 +6,11 @@ reusable parts
 3.tags
 
 4.complete model looks like
-
-{interactive_id:id,
-  introduction:content,
+quizesCollection:
+{
+  interactiveId
+}
+quizesArr
+{
   quizes: quizesArr
 }

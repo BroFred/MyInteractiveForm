@@ -7,6 +7,7 @@ angular.module('myApp')
     controller:"quizController",
     link:function(scope,element,attribute){
       var autoSave = function(){
+        scope.isFold=false;
         scope.current.Edit=scope.rootQuiz.id;
         var len=scope.rootQuiz.quizBody.availableOptions.length;
         var inputCheckBoxArr=$("form[name='quizForm']").find("input[type='checkbox']").splice(0,len);
