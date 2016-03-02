@@ -91,9 +91,4 @@ angular.module('myApp')
     return $sce.trustAsHtml((htmlCode||'').replace(/\p\>/g,'span\>'));
   }
 }])
-.directive('previewQuiz',function(){
-  return {
-    resitric :'E',
-    templateUrl:'../template/previewQuiz.html'
-  }
-});
+;
